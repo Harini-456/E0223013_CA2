@@ -1,5 +1,4 @@
 {
   "buildCommand": "cd sample-project && npm run build",
-  "outputDirectory": "sample-project/dist",
-  "rootDirectory": "sample-project"
+  "outputDirectory": "sample-project/dist"
 }
