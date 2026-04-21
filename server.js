@@ -7,9 +7,9 @@ const PORT = 6060;
 const BASE_URL = "https://t4e-testserver.onrender.com/api";
 
 let dataset = []
-const loadData = async => {
+const loadData = async () => {
     try{
- const tokenResponse = await axios.post(`${BASE_URL}/public/token`,{
+        const tokenResponse = await axios.post(`${BASE_URL}/public/token`,{
             "studentId" : "E0223013",
             "set":"setA",
             "password":"495490"
@@ -41,3 +41,19 @@ app.get("/",(req,res)=>{
     res.json(dataset);
 })
 
+app.get("/orders",(req,res)=>{
+    res.json(dataset);
+})
+
+app.get("/orders/:id",async (req,res) => {
+    try{
+    const id = req.params.id;
+    const order = dataset.data.order.find((m) => m.id === id);
+    if(!order)
+        return res.status(404).json({message: "Order found"});
+    res.send(order);
+}
+    catch(err){
+        res.json({message: "Order not found"});
+    }
+ });
