@@ -1,19 +1,22 @@
-import { useState } from 'react'
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
-import './App.css'
+import Orders from "./pages/Order";
+import OrderDetail from "./pages/OrderDetail";
+import Filter from "./pages/Filter";
+import Stats from "./pages/Stats";
 
 function App() {
-  const [order] = useState(0)
-
   return (
-    <>
-      
-        <div>
-          <h1>Order</h1>
-</div>
-      <button>Get Order</button>
-    </>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Navigate to="/orders" />} />
+
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders/:id" element={<OrderDetail />} />
+        <Route path="/stats" element={<Stats />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
